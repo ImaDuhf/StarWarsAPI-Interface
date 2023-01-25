@@ -6,7 +6,7 @@ function App() {
 	// 		.then((resp) => resp.json())
 	// 		.then((data) => console.log(data));
 
-	const [option, setOption] = useState('people');
+	const [option, setOption] = useState('');
 
 	return (
 		<div className="App">
