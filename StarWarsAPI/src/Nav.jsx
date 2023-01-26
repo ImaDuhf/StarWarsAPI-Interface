@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Nav({ setOption, getData }) {
+export default function Nav({ getData }) {
 	return (
 		<nav className="nav">
 			<button
