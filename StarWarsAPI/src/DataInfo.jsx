@@ -7,7 +7,7 @@ export default function DataInfo({ option, dataInfo, additionalData }) {
 		switch (option) {
 			case 'people':
 				return (
-					<div>
+					<>
 						<h2>{dataInfo.name}</h2>
 						<p>Height: {dataInfo.height}cm</p>
 						<p>Weight: {dataInfo.mass}kg</p>
@@ -16,13 +16,13 @@ export default function DataInfo({ option, dataInfo, additionalData }) {
 						<p>Eye Color: {dataInfo.eye_color}</p>
 						<p>Birth Year: {dataInfo.birth_year}</p>
 						<p>Gender: {dataInfo.gender}</p>
-						<p>Home Planet: {additionalData.name}</p>
-					</div>
+						<DataInfoItem additionalData={additionalData} option={option} />
+					</>
 				);
 
 			case 'planets':
 				return (
-					<div>
+					<>
 						<h2>{dataInfo.name}</h2>
 						<p>Rotation period: {dataInfo.rotation_period}h</p>
 						<p>Orbital period: {dataInfo.orbital_period} days</p>
@@ -32,75 +32,73 @@ export default function DataInfo({ option, dataInfo, additionalData }) {
 						<p>Terrain: {dataInfo.terrain}</p>
 						<p>Population: {dataInfo.population}</p>
 						{/* Ska loopas genom och läggas till senare */}
-						<DataInfoItem additionalData={additionalData} option={option} key={additionalData[0].name} />
-					</div>
+						<DataInfoItem additionalData={additionalData} option={option} />
+					</>
 				);
 			case 'films':
 				return (
-					<div>
+					<>
 						<h2>{dataInfo.title}</h2>
-						<p>{dataInfo.episode_id}</p>
-						<p>{dataInfo.opening_crawl}</p>
-						<p>{dataInfo.director}</p>
-						<p>{dataInfo.producer}</p>
-						<p>{dataInfo.release_date}</p>
-						<DataInfoItem additionalData={additionalData} option={option} key={additionalData[0].title} />
-					</div>
+						<p>Ep: {dataInfo.episode_id}</p>
+						<p>Opening crawl: {dataInfo.opening_crawl}</p>
+						<p>Director: {dataInfo.director}</p>
+						<p>Producer: {dataInfo.producer}</p>
+						<p>Release date: {dataInfo.release_date}</p>
+						<DataInfoItem additionalData={additionalData} option={option} />
+					</>
 				);
 			case 'species':
 				return (
-					<div>
+					<>
 						<h2>{dataInfo.name}</h2>
-						<p>{dataInfo.classification}</p>
-						<p>{dataInfo.designation}</p>
-						<p>{dataInfo.average_height}cm</p>
-						<p>{dataInfo.skin_colors}</p>
-						<p>{dataInfo.hair_colors}</p>
-						<p>{dataInfo.eye_colors}</p>
-						<p>{dataInfo.average_lifespan} years</p>
-						<p>{dataInfo.homeworld}</p>
-						<p>{dataInfo.language}</p>
-					</div>
+						<p>Classification: {dataInfo.classification}</p>
+						<p>Designation: {dataInfo.designation}</p>
+						<p>Avg height: {dataInfo.average_height}cm</p>
+						<p>Skin colors: {dataInfo.skin_colors}</p>
+						<p>Hair colors: {dataInfo.hair_colors}</p>
+						<p>Eye colors: {dataInfo.eye_colors}</p>
+						<p>Avg lifespan: {dataInfo.average_lifespan} years</p>
+						<p>Language: {dataInfo.language}</p>
+						<DataInfoItem additionalData={additionalData} option={option} />
+					</>
 				);
-
 			case 'vehicles':
 				return (
-					<div>
+					<>
 						<h2>{dataInfo.name}</h2>
-						<p>{dataInfo.model}</p>
-						<p>{dataInfo.manufacturer}</p>
-						<p>{dataInfo.cost_in_credits}</p>
-						<p>{dataInfo.length}</p>
-						<p>{dataInfo.max_atmosphering_speed}</p>
-						<p>{dataInfo.crew}</p>
-						<p>{dataInfo.passengers}</p>
-						<p>{dataInfo.cargo_capacity}</p>
-						<p>{dataInfo.consumables}</p>
-						<p>{dataInfo.vehicle_class}</p>
-						<p>{dataInfo.pilots}</p>
-						<p>{dataInfo.films}</p>
-						<DataInfoItem additionalData={additionalData} option={option} key={crypto.randomUUID() + 1} />
-					</div>
+						<p>Model: {dataInfo.model}</p>
+						<p>Manufacturer: {dataInfo.manufacturer}</p>
+						<p>Cost: {dataInfo.cost_in_credits}</p>
+						<p>Length: {dataInfo.length}m</p>
+						<p>Max speed in atmosphere: {dataInfo.max_atmosphering_speed}km/h</p>
+						<p>Max Crew size: {dataInfo.crew}</p>
+						<p>Max Passenger size: {dataInfo.passengers}</p>
+						<p>Max total cargo capacity: {dataInfo.cargo_capacity}kg</p>
+						<p>Consumables: {dataInfo.consumables}</p>
+						<p>Vehicle class: {dataInfo.vehicle_class}</p>
+						<DataInfoItem additionalData={additionalData} option={option}  />
+					</>
 				);
 			case 'starships':
 				return (
-					<div>
+					<>
 						<h2>{dataInfo.name}</h2>
-						<p>{dataInfo.model}</p>
-						<p>{dataInfo.manufacturer}</p>
-						<p>{dataInfo.cost_in_credits}</p>
-						<p>{dataInfo.length}</p>
-						<p>{dataInfo.max_atmosphering_speed}</p>
-						<p>{dataInfo.crew}</p>
-						<p>{dataInfo.passengers}</p>
-						<p>{dataInfo.cargo_capacity}</p>
-						<p>{dataInfo.consumables}</p>
-						<p>{dataInfo.hyperdrive_rating}</p>
-						<p>{dataInfo.MGLT}</p>
-						<p>{dataInfo.starship_class}</p>
-						<p>{dataInfo.pilots}</p>
-						<p>{dataInfo.films}</p>
-					</div>
+						<p>Model: {dataInfo.model}</p>
+						<p>Manufacturer: {dataInfo.manufacturer}</p>
+						<p>Cost: {dataInfo.cost_in_credits}</p>
+						<p>Length: {dataInfo.length}m</p>
+						<p>Max Speed in atmosphere: {dataInfo.max_atmosphering_speed}km</p>
+						<p>Average crew size: {dataInfo.crew}</p>
+						<p>Max Total Passengers: {dataInfo.passengers} passengers</p>
+						<p>Max Total Cargo Capacity: {dataInfo.cargo_capacity}kg</p>
+						<p>Consumables: {dataInfo.consumables}</p>
+						<p>Hyperdrive rating: {dataInfo.hyperdrive_rating}</p>
+						<p>{dataInfo.MGLT} Megalight/h</p>
+						<p>Starship classification: {dataInfo.starship_class}</p>
+						
+						<DataInfoItem additionalData={additionalData} option={option} />
+
+					</>
 				);
 		}
 	}

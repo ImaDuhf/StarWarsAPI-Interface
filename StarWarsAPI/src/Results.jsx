@@ -5,7 +5,7 @@ export default function Results({ data, option, showInfo }) {
 	while (option !== '') {
 		return data.results.map((item) => {
 			return (
-				<div key={crypto.randomUUID()} onClick={() => {showInfo(item)}}>
+				<div className='items' key={crypto.randomUUID()} onClick={() => {showInfo(item)}}>
 					<ResultItem item={item} key={crypto.randomUUID()} option={option} />
 				</div>
 			);

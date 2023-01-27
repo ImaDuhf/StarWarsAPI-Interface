@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Nav from './Nav';
 import Results from './Results';
 import DataInfo from './DataInfo';
@@ -15,6 +15,9 @@ function App() {
 	const [additionalData, setAdditionalData] = useState({});
 	const [pageCount, SetPageCount] = useState('');
 	const [currentPage, SetCurrentPage] = useState(1);
+
+	const searchRef = useRef();
+	const dataContainer = useRef();
 
 	const countPages = (dir) => {
 		if (dir == 'next') {
@@ -38,7 +41,10 @@ function App() {
 			setAdditionalData(data3);
 			console.log('Phase 3 complete');
 			setOption(option);
-			SetPageCount(`${currentPage}/${Math.ceil(data1.count / 10)}`);
+			dataContainer.current.classList.remove('data-not-visible');
+			console.log(dataContainer.current.style.display);
+			SetCurrentPage(1);
+			SetPageCount(`1/${Math.ceil(data1.count / 10)}`);
 		} catch (error) {
 			console.error(error);
 		}
@@ -47,7 +53,13 @@ function App() {
 	const getMissingData = async (data, option) => {
 		switch (option) {
 			case 'people':
-				return await fetch(data.homeworld).then((resp) => resp.json());
+				let peopleHomeworld = await fetch(data.homeworld).then((resp) => resp.json());
+				let peopleFilms = await Promise.all(
+					data.films.map(async (film) => {
+						return await fetch(film).then((resp) => resp.json());
+					})
+				);
+				return [].concat(peopleHomeworld, peopleFilms)
 			// Lägg till filmer också
 			case 'planets':
 				let planetResidents = await Promise.all(
@@ -89,17 +101,35 @@ function App() {
 				);
 				return filmsCharacters.concat(filmsPlanets, filmsStarships, filmsVehicles, filmsSpecies);
 			case 'species':
-				let speciesPeople = await Promise.all(
-					data.people.map(async (person) => {
-						return await fetch(person).then((resp) => resp.json());
-					})
-				);
-				let speciesFilms = await Promise.all(
-					data.films.map(async (film) => {
-						return await fetch(film).then((resp) => resp.json());
-					})
-				);
-				return speciesPeople.concat(speciesFilms);
+				let returnArray = [];
+				if (data.homeworld !== null) {
+					let speciesHomeworld = await fetch(data.homeworld).then((resp) => resp.json());
+					console.log(speciesHomeworld);
+					let speciesPeople = await Promise.all(
+						data.people.map(async (person) => {
+							return await fetch(person).then((resp) => resp.json());
+						})
+					);
+					let speciesFilms = await Promise.all(
+						data.films.map(async (film) => {
+							return await fetch(film).then((resp) => resp.json());
+						})
+					);
+					returnArray = returnArray.concat(speciesHomeworld, speciesPeople, speciesFilms);
+				} else if(data.homeworld === null) {
+					let speciesPeople = await Promise.all(
+						data.people.map(async (person) => {
+							return await fetch(person).then((resp) => resp.json());
+						})
+					);
+					let speciesFilms = await Promise.all(
+						data.films.map(async (film) => {
+							return await fetch(film).then((resp) => resp.json());
+						})
+					);
+					returnArray = returnArray.concat(speciesPeople, speciesFilms);
+				}
+				return returnArray;
 			case 'vehicles':
 				let vehiclesPeople = await Promise.all(
 					data.pilots.map(async (vehiclesPeople) => {
@@ -131,60 +161,53 @@ function App() {
 
 	const changePage = async (dir) => {
 		if (dir == 'next') {
-			await fetch(data.next)
-				.then((resp) => resp.json())
-				.then((data) => {
-					setData(data);
-					// SetCurrentPage(currentPage + 1)
-					countPages(dir);
-					console.log(currentPage);
-				});
-			// SetCurrentPage(currentPage + 1)
-			// SetPageCount(`${currentPage -1}/${Math.ceil(data.count / 10)}`)
+			let nextData = await fetch(data.next).then((resp) => resp.json())
+			setData(nextData);
+			countPages(dir);
 		} else if (dir == 'prev') {
-			await fetch(data.previous)
-				.then((resp) => resp.json())
-				.then((data) => {
-					setData(data);
-					countPages(dir);
-					console.log(currentPage);
-					// SetCurrentPage(currentPage - 1)
-					// SetPageCount(`${currentPage}/${Math.ceil(data.count / 10)}`)
-				});
+			let prevData = await fetch(data.previous).then((resp) => resp.json())
+			setData(prevData);
+			countPages(dir);
 		}
 	};
 
-	const showInfo = (item) => {
-		console.log(item);
+	const showInfo = async (item) => {
+		let newData = await getMissingData(item, option);
+		setDataInfo(item);
+		setAdditionalData(newData);
 	};
-	// const getMissingData = async (option) => {
-	// 	switch(option) {
-	// 		case "planets":
-	// 			for (let i = 0; i < dataInfo.residents.length; i++) {
-	// 				await fetch(dataInfo.residents[i]).then(resp => resp.json()).then(data => {
-	// 					return data;
-	// 				})
-	// 			}
-	// 		case "people":
-	// 			await fetch(dataInfo.homeworld).then(resp => resp.json()).then(data => {
-	// 				return data;
-	// 			})
-	// 	}
-	// }
+
+	const searchData = async (query) => {
+		if (query.trim() !== '') {
+			let queryData = await fetch(`https://swapi.dev/api/${option}/?search=${query}`).then(resp=>resp.json());
+			let newData  = await getMissingData(queryData.results[0], option)
+			setDataInfo(queryData.results[0]);
+			setAdditionalData(newData);
+		}
+		
+	}
 
 	return (
 		<div className="App">
-			<h1>Star Wars API Interface</h1>
 			<Nav getData={getData} />
-			<p>{option}</p>
-			<div className="">
-				<Results data={data} option={option} showInfo={showInfo} />
-				<button onClick={() => changePage('prev')}>&lt;</button>
-				<p>{pageCount}</p>
-				<button onClick={() => changePage('next')}>&gt;</button>
-			</div>
+			<h1 className='title'>Star Wars API Interface</h1>
 
-			<DataInfo option={option} dataInfo={dataInfo} additionalData={additionalData} />
+		<div className='data-container data-not-visible' ref={dataContainer}>
+			<div className="item-column">
+				<input type="text" className='search-field' ref={searchRef}/>
+				<button className='search-btn' onClick={() => searchData(searchRef.current.value)}>Search</button>
+				
+				<Results data={data} option={option} showInfo={showInfo} />
+				<div className='page'>
+				<button className='page-btn' onClick={() => changePage('prev')}>&lt;</button>
+				<p>{pageCount}</p>
+				<button className='page-btn' onClick={() => changePage('next')}>&gt;</button>
+				</div>
+			</div>
+			<div className='data-column'>			
+				<DataInfo option={option} dataInfo={dataInfo} additionalData={additionalData} />
+			</div>
+			</div>
 		</div>
 	);
 }
