@@ -8,12 +8,17 @@
     src: url('./assets/star_jedi/starjedi/starjedi.ttf');
 }
 
+html {
+    --scrollbarBG: #CFD8DC;
+    --thumbBG: #90A4AE;
+  }
+
+
 body {
     margin: 0;
     padding: 0;
     background-image: url("./assets/default-grogu.jpg");
     background-size: 100% auto;
-    
 }
 
 /* Characters */
@@ -86,24 +91,27 @@ body {
 }
 
 .data-container {
-    font-family: starWarsFont;
     color: gold;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: rgba(69, 85, 105, 0.601);
-    border-radius: 100px;
+    background-color: rgba(69, 85, 105, 0.213);
+    border-radius: 10px;
     padding: 2em;
     justify-content: space-evenly;
     /* display: contents; */
 }
+
+
 .data-not-visible {
     display: none;
 }
 
 .item-column {
+    font-family: starWarsFont;
     cursor: pointer;
     font-size: 2rem;
+    border-radius: 10px;
     /* text-align: center; */
     display: flex;
     flex-wrap: wrap;
@@ -120,7 +128,7 @@ body {
 }
 
 .items:hover {
-    background-color: rgb(91, 156, 206);
+    background-color: rgb(9, 32, 50);
 }
 
 .page-btn:hover {
@@ -129,6 +137,7 @@ body {
 
 .data-column {
     display: flex;
+    border-radius: 10px;
     flex-wrap: wrap;
     font-size: 1.5rem;
     justify-content: center;
@@ -140,18 +149,44 @@ body {
     /* text-align: justify; */
     display: inline-block;
     overflow-y: auto;
-    max-height: 70vh;
+    /* max-height: 70vh; */
+    max-height: 100%;
+
 }
+
+.data-column::-webkit-scrollbar {
+    width: 11px;
+    scrollbar-width: thin;
+    background: rgba(28, 28, 62, 0.604);
+    border-radius: 6px;
+}  
+
+::-webkit-scrollbar-thumb{
+    background-color: rgba(247, 216, 40, 0.838) ;
+    border-radius: 6px;
+}
+
+
 .data-column p {
     margin: .4em;
-    text-align: center;
+    /* font-size: 1.8rem; */
+    padding: .5em 0 0 .5em;
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-weight: 100; */
+    /* text-align: center; */
+    font-weight: 800;
+}
 
+.data-column span {
+    font-weight: 400;
+    margin-left: .4em;
 }
 
 .data-column h2 {
+    font-family: starWarsFont;
     text-align: center;
     background-color:  rgba(68, 68, 126, 0.325);
-    font-size: 3rem;
+    font-size: 4rem;
     padding: .3em;
     margin-bottom: 1.5em ;
 }
@@ -177,21 +212,27 @@ body {
     align-items: center;
 }
 
+.search-container{
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+}
+
 .search-btn {
     cursor: pointer;
-    padding: 1em;
-    width: 150px;
+    /* padding: 0em; */
+    width: 100px;
     font-family: starWarsFont;
 }
 
 .search-field {
-    padding: 1em;
-    
+    padding: .8em;
+    width: 9em
 }
 
 .search-btn,
 .search-field{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .page-btn {

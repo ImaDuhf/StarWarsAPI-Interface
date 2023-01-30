@@ -209,9 +209,10 @@ function App() {
 
 		<div className='data-container data-not-visible' ref={dataContainer}>
 			<div className="item-column">
+				<div className='search-container'>
 				<input type="text" className='search-field' ref={searchRef}/>
 				<button className='search-btn' onClick={() => searchData(searchRef.current.value)}>Search</button>
-				
+				</div>
 				<Results data={data} option={option} showInfo={showInfo} />
 				<div className='page'>
 				<button className='page-btn' onClick={() => changePage('prev')}>&lt;</button>
