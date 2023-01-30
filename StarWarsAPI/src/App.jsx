@@ -50,6 +50,7 @@ function App() {
 		}
 	};
 
+
 	const getMissingData = async (data, option) => {
 		switch (option) {
 			case 'people':
@@ -59,6 +60,8 @@ function App() {
 						return await fetch(film).then((resp) => resp.json());
 					})
 				);
+				document.body.className = "backgroundOne";
+				// document.body.style.backgroundImage = "url('./assets/Chewbaca-and-ewok.png')";
 				return [].concat(peopleHomeworld, peopleFilms)
 			// Lägg till filmer också
 			case 'planets':
@@ -72,8 +75,11 @@ function App() {
 						return await fetch(film).then((resp) => resp.json());
 					})
 				);
+				document.body.className = "backgroundTwo";
+				// document.body.style.backgroundImage = "url('./assets/Courscant-planet.png')";
 				return (planetResidents = planetResidents.concat(planetFilms));
 			case 'films':
+
 				let filmsCharacters = await Promise.all(
 					data.characters.map(async (character) => {
 						return await fetch(character).then((resp) => resp.json());
@@ -99,6 +105,8 @@ function App() {
 						return await fetch(specimen).then((resp) => resp.json());
 					})
 				);
+				document.body.className = "backgroundThree"
+				// document.body.style.backgroundImage = "url('./assets/movie-background.jpg')";
 				return filmsCharacters.concat(filmsPlanets, filmsStarships, filmsVehicles, filmsSpecies);
 			case 'species':
 				let returnArray = [];
@@ -129,6 +137,9 @@ function App() {
 					);
 					returnArray = returnArray.concat(speciesPeople, speciesFilms);
 				}
+				document.body.className = "backgroundFour";
+				// document.body.style.backgroundImage = "url('./assets/Chewbaca-and-ewok.png')";
+				
 				return returnArray;
 			case 'vehicles':
 				let vehiclesPeople = await Promise.all(
@@ -142,6 +153,8 @@ function App() {
 						return await fetch(vehiclesFilms).then((resp) => resp.json());
 					})
 				);
+				document.body.className = "backgroundFive";
+				// document.body.style.backgroundImage = "url('./assets/bakgrundsbild-forest.jpg')";
 				return vehiclesPeople.concat(vehiclesFilms);
 			case 'starships':
 				let starshipsPeople = await Promise.all(
@@ -155,6 +168,8 @@ function App() {
 						return await fetch(vehiclesFilms).then((resp) => resp.json());
 					})
 				);
+				document.body.className = "backgroundSix";
+				// document.body.style.backgroundImage = "url('./assets/bakgrundsbild-spaceships.jpg')";
 				return starshipsPeople.concat(starshipsFilms);
 		}
 	};

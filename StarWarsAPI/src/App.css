@@ -13,7 +13,41 @@ body {
     padding: 0;
     background-image: url("./assets/default-grogu.jpg");
     background-size: 100% auto;
+    
 }
+
+/* Characters */
+.backgroundOne {
+    background-image: url("./assets/background-vader.jpg");
+    background-size: 100% auto;
+    
+}
+/* Planets */
+.backgroundTwo {
+    background-image: url("./assets/Courscant-planet.png");
+    background-size: 100% auto;
+}
+/* Films */
+.backgroundThree {
+    background-image: url("./assets/movie-background.jpg");
+    background-size: 100% auto;
+}
+/* Species */
+.backgroundFour {
+    background-image: url("./assets/Chewbaca-and-ewok.png");
+    background-size: 120% auto;
+}
+/* Vehicles */
+.backgroundFive {
+    background-image: url("./assets/at-at-day.jpg");
+    background-size: 100% auto;
+}
+/* Starships */
+.backgroundSix {
+    background-image: url("./assets/bakgrundsbild-spaceships.jpg");
+    background-size: 100% auto;
+}
+
 
 .App {
     width: 80%;
