@@ -3,46 +3,22 @@ import React from 'react';
 export default function Nav({ getData }) {
 	return (
 		<nav className="nav">
-			<button
-				onClick={() => {
-					getData('planets');
-				}}
-			>
+			<button onClick={() => getData('planets')}>
 				Planets
 			</button>
-			<button
-				onClick={() => {
-					getData('people');
-				}}
-			>
+			<button onClick={() => getData('people')}>
 				Characters
 			</button>
-			<button
-				onClick={() => {
-					getData('films');
-				}}
-			>
-				Films
+			<button onClick={() => getData('films')}>
+                Films
 			</button>
-			<button
-				onClick={() => {
-					getData('species');
-				}}
-			>
+			<button onClick={() => getData('species')}>
 				Species
 			</button>
-			<button
-				onClick={() => {
-					getData('vehicles');
-				}}
-			>
+			<button onClick={() => getData('vehicles')}>
 				Vehicles
 			</button>
-			<button
-				onClick={() => {
-					getData('starships');
-				}}
-			>
+			<button onClick={() => getData('starships')}>
 				Starships
 			</button>
 		</nav>

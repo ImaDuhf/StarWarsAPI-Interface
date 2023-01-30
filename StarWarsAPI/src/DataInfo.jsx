@@ -31,7 +31,6 @@ export default function DataInfo({ option, dataInfo, additionalData }) {
 						<p>Gravity: <span>{dataInfo.graviy} standard</span></p>
 						<p>Terrain: <span>{dataInfo.terrain}</span></p>
 						<p>Population: <span>{dataInfo.population}</span></p>
-						{/* Ska loopas genom och läggas till senare */}
 						<DataInfoItem additionalData={additionalData} option={option} />
 					</>
 				);
@@ -68,7 +67,7 @@ export default function DataInfo({ option, dataInfo, additionalData }) {
 						<h2>{dataInfo.name}</h2>
 						<p>Model: <span>{dataInfo.model}</span></p>
 						<p>Manufacturer: <span>{dataInfo.manufacturer}</span></p>
-						<p>Cost: <span>{dataInfo.cost_in_credits}</span></p>
+						<p>Cost: <span>{dataInfo.cost_in_credits} Credits</span></p>
 						<p>Length: <span>{dataInfo.length}m</span></p>
 						<p>Max speed in atmosphere: <span>{dataInfo.max_atmosphering_speed}km/h</span></p>
 						<p>Max Crew size: <span>{dataInfo.crew}</span></p>
@@ -85,17 +84,16 @@ export default function DataInfo({ option, dataInfo, additionalData }) {
 						<h2>{dataInfo.name}</h2>
 						<p>Model: <span>{dataInfo.model}</span></p>
 						<p>Manufacturer: <span>{dataInfo.manufacturer}</span></p>
-						<p>Cost: <span>{dataInfo.cost_in_credits}</span></p>
+						<p>Cost: <span>{dataInfo.cost_in_credits} Credits</span></p>
 						<p>Length: <span>{dataInfo.length}m</span></p>
-						<p>Max Speed in atmosphere: <span>{dataInfo.max_atmosphering_speed}km</span></p>
+						<p>Max Speed in atmosphere: <span>{dataInfo.max_atmosphering_speed}km/h</span></p>
 						<p>Average crew size: <span>{dataInfo.crew}</span></p>
 						<p>Max Total Passengers: <span>{dataInfo.passengers} passengers</span></p>
 						<p>Max Total Cargo Capacity: <span>{dataInfo.cargo_capacity}kg</span></p>
 						<p>Consumables: <span>{dataInfo.consumables}</span></p>
 						<p>Hyperdrive rating: <span>{dataInfo.hyperdrive_rating}</span></p>
-						<p><span>{dataInfo.MGLT}</span> Megalight/h</p>
+						<p>Speed: <span>{dataInfo.MGLT} Megalight/h</span></p>
 						<p>Starship classification: <span>{dataInfo.starship_class}</span></p>
-						
 						<DataInfoItem additionalData={additionalData} option={option} />
 
 					</>
