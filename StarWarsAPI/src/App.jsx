@@ -210,7 +210,7 @@ function App() {
 		<div className='data-container data-not-visible' ref={dataContainer}>
 			<div className="item-column">
 				<div className='search-container'>
-				<input type="text" className='search-field' ref={searchRef}/>
+				<input type="text" className='search-field' ref={searchRef} placeholder={option} />
 				<button className='search-btn' onClick={() => searchData(searchRef.current.value)}>Search</button>
 				</div>
 				<Results data={data} option={option} showInfo={showInfo} />
