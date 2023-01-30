@@ -12,7 +12,18 @@ export default function DataInfoItem({ additionalData, option }) {
 		});
 	} else if (option == 'films') {
 		return additionalData.map((item, index) => {
-			return <p key={index}>Name: <span>{item.name}</span></p>;
+            if (item.MGLT !== undefined) {
+                return <p key={index}>Starship: <span>{item.name}</span></p>;
+            } else if (item.vehicle_class !== undefined) {
+                return <p key={index}>Vehicle: <span>{item.name}</span></p>;
+            } else if (item.designation !== undefined) {
+                return <p key={index}>Species: <span>{item.name}</span></p>;
+            } else if (item.diameter !== undefined) {
+                return <p key={index}>Planet: <span>{item.name}</span></p>;
+            } else {
+                return <p key={index}>Character: <span>{item.name}</span></p>;
+            }
+			
 		});
 	} else if (option == 'species') {
 		return additionalData.map((item, index) => {

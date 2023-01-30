@@ -26,7 +26,7 @@ export default function DataInfo({ option, dataInfo, additionalData }) {
 						<h2>{dataInfo.name}</h2>
 						<p>Rotation period: <span>{dataInfo.rotation_period}h</span></p>
 						<p>Orbital period: <span>{dataInfo.orbital_period} days</span></p>
-						<p>Diameter: <span>{dataInfo.diameter}</span></p>
+						<p>Diameter: <span>{dataInfo.diameter}km</span></p>
 						<p>Climate: <span>{dataInfo.climate}</span></p>
 						<p>Gravity: <span>{dataInfo.graviy} standard</span></p>
 						<p>Terrain: <span>{dataInfo.terrain}</span></p>
