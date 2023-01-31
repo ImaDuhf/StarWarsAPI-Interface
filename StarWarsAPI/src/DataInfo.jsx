@@ -2,7 +2,6 @@ import React from 'react';
 import DataInfoItem from './DataInfoItem';
 
 export default function DataInfo({ option, dataInfo, additionalData }) {
-	console.log(additionalData);
 	while (option !== '') {
 		switch (option) {
 			case 'people':

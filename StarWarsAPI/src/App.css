@@ -107,11 +107,9 @@ body {
 	font-family: starWarsFont;
 	font-size: 2rem;
 	border-radius: 10px;
-	/* text-align: center; */
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
-	/* justify-content: center; */
 	align-items: center;
 	gap: 0.5em;
 	flex: 1;
@@ -119,7 +117,6 @@ body {
 	max-width: 500px;
 	padding: 1em 0;
 	max-height: 100%;
-	/* max-width: fit-content; */
 }
 
 .items:hover {
@@ -141,7 +138,6 @@ body {
 	flex: 1;
 	background-color: rgba(9, 9, 39, 0.838);
 	max-width: 800px;
-	/* text-align: justify; */
 	display: inline-block;
 	overflow-y: auto;
 	max-height: 90vh;
@@ -161,11 +157,8 @@ body {
 
 .data-column p {
 	margin: 0.4em;
-	/* font-size: 1.8rem; */
 	padding: 0.5em 0 0 0.5em;
 	font-family: Arial, Helvetica, sans-serif;
-	/* font-weight: 100; */
-	/* text-align: center; */
 	font-weight: 800;
 }
 
@@ -184,9 +177,6 @@ body {
 }
 
 .items {
-	/* display: flex; */
-	/* justify-content: center;
-    align-items: cente; */
 	border: 1px solid blue;
 	padding: 0.2em;
 	min-width: 350px;
@@ -213,7 +203,6 @@ body {
 
 .search-btn {
 	cursor: pointer;
-	/* padding: 0em; */
 	width: 100px;
 	font-family: starWarsFont;
 }

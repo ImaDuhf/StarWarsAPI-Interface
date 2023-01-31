@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function DataInfoItem({ additionalData, option }) {
-	console.log(additionalData);
 	if (option == 'planets') {
 		return additionalData.map((item, index) => {
 			if (item.name !== undefined) {
